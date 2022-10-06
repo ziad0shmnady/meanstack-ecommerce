@@ -1,0 +1,26 @@
+<div class="bg-light p-2">
+  <div class="text-center">
+    <a [routerLink]="['productDeatils', product._id]"
+      ><img [src]="product.image_url" class="product-img" alt="" height="220"
+    /></a> 
+  </div>
+  <div class="text mb-1">
+    <a
+      [routerLink]="['productDeatils', product._id]"
+      class="text-decoration-none text-dark text-product fw-bold"
+      >{{ product.name }}</a
+    >
+  </div>
+  <div class="text-primary">
+    <div class="fw-bold price">{{product.sizes[0].price * (1 - (product.discount / 100)) | currency:'EGP'}}</div>
+
+    <div class="discount text-muted">
+      <del>{{ product.sizes[0].price  | currency: "EGP" }}</del>
+    </div>
+  </div>
+  <div
+    class="mt-4 text-center text-light fs-5 fw-bold cursor-pointer m-auto addtocarttext add-to-cart rounded-pill px-3 py-2" (click)="addToCart(product)"
+  >
+    <span >Add to Cart <i class="fa-solid fa-plus ms-2 fs-5"></i></span>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="products mt-5 pt-3 pb-5">
+  <header class="d-flex align-items-center fw-bold">
+    <h2 class="fs-1">{{ title }}</h2>
+    <button class="btn ms-auto rounded-0 border-0 fs-4">
+      <a
+        class="text-decoration-none viewAllCategories animatedArrow text-danger"
+        href="/home/viewAllProducts"
+      >
+        <span>View All</span>
+        <i class="fa-solid fa-arrow-right ms-3"></i>
+      </a>
+    </button>
+  </header>
+  <div class="body-content">
+    <swiper [config]="config">
+      <ng-container *ngFor="let product of products; let i = index">
+        <ng-template swiperSlide class="bg-light p-2">
+          <app-product [product]="product"></app-product>
+        </ng-template>
+      </ng-container>
+    </swiper>
+  </div>
+</div>

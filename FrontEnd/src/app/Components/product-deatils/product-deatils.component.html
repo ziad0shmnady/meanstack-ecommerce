@@ -1,0 +1,282 @@
+<!-- Breadcrumb Start -->
+<div class="container-fluid ">
+  <div class="row px-xl-5">
+    <div class="col-12">
+      <nav class="breadcrumb bg-light mb-30">
+        <a class="breadcrumb-item text-dark" href="#">Home</a>
+        <span class="breadcrumb-item active">Product Details</span>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Shop Detail Start -->
+<div class="container-fluid pb-5">
+  <div class="row px-xl-5">
+    <div class="col-lg-5 mb-5">
+      <img class="w-75 h-100" [src]="product.image_url" [alt]="product.name" />
+    </div>
+
+    <div class="col-lg-7 h-auto mb-5">
+      <div class="h-100 bg-light p-5">
+        <h3>{{ product.name }}</h3>
+        <h3 class="font-weight-semi-bold mb-4 text-danger">
+          {{ product.sizes[0].price * (1 - (product.discount / 100)) | currency: "EGP" }}
+        </h3>
+        <p class="mb-4 fs-4">
+          Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam
+          stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor
+          no sea Nonumy
+        </p>
+        <div class="d-flex mb-3">
+          <strong class="text-dark mr-3 fs-5">Sizes:</strong>
+          <form class="d-flex align-items-center mt-1">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input ms-2"
+                id="size-1"
+                name="size"
+                [checked]="product.sizes[0].name == 'XS'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="size-1">XS</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="size-2"
+                name="size"
+                [checked]="product.sizes[1].name == 'S'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="size-2">S</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="size-3"
+                name="size"
+                [checked]="product.sizes[2].name == 'M'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="size-3">M</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="size-4"
+                name="size"
+                [checked]="product.sizes[3].name == 'l'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="size-4">L</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="size-5"
+                name="size"
+                [checked]="product.sizes[4].name == 'xl'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="size-5">XL</label>
+            </div>
+          </form>
+        </div>
+        <div class="d-flex mb-4">
+          <strong class="text-dark mr-3 fs-5">Colors:</strong>
+          <form class="d-flex align-items-center mt-1">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input ms-2"
+                id="color-1"
+                name="color"
+                [checked]="product.colors[0] == 'red'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="color-1">Red</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="color-2"
+                name="color"
+                [checked]="product.colors[1] == 'blue'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="color-2">Blue</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="color-3"
+                name="color"
+                [checked]="product.colors[2] == 'Green'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="color-3">Green</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="color-4"
+                name="color"
+                [checked]="product.colors[3] == 'yellow'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="color-4">Yellow</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="color-5"
+                name="color"
+                [checked]="product.colors[4] == 'black'"
+              />
+              <label class="custom-control-label ms-1 me-2" for="color-5">Black</label>
+            </div>
+          </form>
+        </div>
+        <div class="d-flex align-items-center mb-4 pt-2">
+          <div class="input-group quantity me-3" style="width: 130px">
+            <div class="input-group-btn">
+              <button class="btn btn-primary btn-minus">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <input
+              type="text"
+              class="form-control border-0 text-center"
+              value="1"
+            />
+            <div class="input-group-btn">
+              <button class="btn btn-primary btn-plus">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <button class="btn btn-primary px-3">
+            <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+          </button>
+        </div>
+        <div class="d-flex pt-2">
+          <strong class="text-dark mr-2">Share on:</strong>
+          <div class="d-inline-flex">
+            <a class="text-dark px-2" href="">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="text-dark px-2" href="">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a class="text-dark px-2" href="">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a class="text-dark px-2" href="">
+              <i class="fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row px-xl-5">
+    <div class="col">
+      <div class="bg-light p-30">
+        <div class="nav nav-tabs mb-4">
+          <a
+            class="nav-item nav-link text-dark active"
+            data-toggle="tab"
+            href="#tab-pane-1"
+            >Description</a
+          >
+          <a
+            class="nav-item nav-link text-dark"
+            data-toggle="tab"
+            href="#tab-pane-2"
+            >Information</a
+          >
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade show active p-3" id="tab-pane-1">
+            <h4 class="mb-3">Product Description</h4>
+            <p>
+              Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea.
+              Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero
+              diam ea vero et dolore rebum, dolor rebum eirmod consetetur
+              invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum
+              rebum diam. Dolore diam stet rebum sed tempor kasd eirmod.
+              Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam
+              consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod
+              nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit
+              rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus
+              eirmod takimata dolor ea invidunt.
+            </p>
+            <p>
+              Dolore magna est eirmod sanctus dolor, amet diam et eirmod et
+              ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem
+              tempor. Gubergren amet amet labore sadipscing clita clita diam
+              clita. Sea amet et sed ipsum lorem elitr et, amet et labore
+              voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna
+              takimata justo et amet magna et.
+            </p>
+          </div>
+          <div class="tab-pane fade p-3" id="tab-pane-2">
+            <h4 class="mb-3">Additional Information</h4>
+            <p>
+              Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea.
+              Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero
+              diam ea vero et dolore rebum, dolor rebum eirmod consetetur
+              invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum
+              rebum diam. Dolore diam stet rebum sed tempor kasd eirmod.
+              Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam
+              consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod
+              nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit
+              rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus
+              eirmod takimata dolor ea invidunt.
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item px-0">
+                    Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                  </li>
+                  <li class="list-group-item px-0">
+                    Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                  </li>
+                  <li class="list-group-item px-0">
+                    Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                  </li>
+                  <li class="list-group-item px-0">
+                    Takimata ea clita labore amet ipsum erat justo voluptua.
+                    Nonumy.
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item px-0">
+                    Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                  </li>
+                  <li class="list-group-item px-0">
+                    Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                  </li>
+                  <li class="list-group-item px-0">
+                    Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                  </li>
+                  <li class="list-group-item px-0">
+                    Takimata ea clita labore amet ipsum erat justo voluptua.
+                    Nonumy.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Shop Detail End -->
+

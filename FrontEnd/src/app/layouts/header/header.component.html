@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="logo">
+      <div routerLink="home" class=""><img src="/assets/Imgs/logo.png" alt="" width="100px" /></div>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Search  -->
+      <form class="d-flex form-inline mx-auto my-2" role="search">
+        <input
+          class="form-control search-barr rounded-0 fw-bold"
+          type="search"
+          aria-label="Search"
+          type="text"
+          placeholder="What are you looking for?"
+          name="q"
+          autocomplete="none"
+        />
+        <button type="submit" class="search-btn border-0">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+      <div class="check d-flex align-items-center">
+        <!-- SignIn -->
+        <div class="signin">
+          <div
+            routerLink="home/login"
+            class="fw-bold text-white border-0 text-decoration-none btn"
+            >Sign In<i class="fa-regular fa-user ms-2"></i
+          ></div>
+        </div>
+        <!-- Cart  -->
+        <div class="cart fw-bold">
+          <div routerLink="home/cart" type="button" class="text-decoration-none" >
+            <span class="fw-bold text-white border-0 "
+              >Cart<i class="fa-solid fa-cart-shopping ms-2"></i
+            ></span>
+            <div class="cart-counter text-light">{{getCartCount()}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
