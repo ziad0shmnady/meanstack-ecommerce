@@ -8,7 +8,7 @@ import { Product } from '../interfaces/product';
 export class CartService {
   cartLines: Array<CartLine> = [];
   constructor() {
-    //localStorage.setItem('cartLines', JSON.stringify(this.cartLines));
+    // localStorage.setItem('cartLines', JSON.stringify(this.cartLines));
   }
 
   getProducts(): Array<CartLine> {
@@ -17,7 +17,12 @@ export class CartService {
   }
 
   getProductCount(): number {
-    return this.cartLines.length;
+    let total = 0
+    const products = JSON.parse(localStorage.getItem("cartLines") || '{}')
+    products.forEach((item: any) => {
+      total += item.count
+    });
+    return total;
   }
 
   addProduct(product: Product) {
@@ -51,12 +56,12 @@ export class CartService {
 
   getSubTotal() {
     return this.cartLines
-      .map((l) => l.product.price * l.count)
-      .reduce((a, v) => (a += v));
+      .map((l) => l.product.sizes[0].price * l.count)
+      .reduce((a, v) => (a += v),0);
   }
 
   getShipping() {
-    return this.getSubTotal() * 0.1;
+    return this.getSubTotal() * 0.005;
   }
 
   addItem(index: number) {

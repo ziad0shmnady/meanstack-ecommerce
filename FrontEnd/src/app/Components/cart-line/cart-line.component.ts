@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartLine } from 'src/app/interfaces/cart-line';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: '.app-cart-line',

@@ -20,6 +20,8 @@ import { ProductComponent } from './Components/main-page/product/product.compone
 import { ProductDeatilsComponent } from './Components/product-deatils/product-deatils.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
+import { CartLineComponent } from './Components/cart-line/cart-line.component';
+import { CartComponent } from './Components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { SwiperModule } from 'swiper/angular';
     ProductsComponent,
     ProductComponent,
     ProductDeatilsComponent,
+    CartLineComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
