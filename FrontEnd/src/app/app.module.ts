@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app-component/app.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -22,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
 import { CartLineComponent } from './Components/cart-line/cart-line.component';
 import { CartComponent } from './Components/cart/cart.component';
+
 
 @NgModule({
   declarations: [

@@ -1,3 +1,4 @@
+import { ApitestService } from '../../services/Api.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 
@@ -8,9 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
   
-  constructor() { }
+  constructor(private apitest:ApitestService) { }
 
   ngOnInit(): void {
+    
   }
 
 }
