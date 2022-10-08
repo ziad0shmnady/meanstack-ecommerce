@@ -9,17 +9,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home',pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainPageComponent },
   { path: 'home/login', component: LoginComponent },
   { path: 'home/register', component: RegisterComponent },
   { path: 'home/cart', component: CartComponent },
   { path: 'home/productDeatils/:id', component: ProductDeatilsComponent },
-  { path: 'home/viewAllProducts', component: ViewAllProductsComponent },
+  {
+    path: 'home/products/:category',
+    component: ViewAllProductsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
