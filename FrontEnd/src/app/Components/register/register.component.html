@@ -2,6 +2,11 @@
   <div class="col-md-6 m-auto">
     <div class="card card-body p-4">
       <h1 class="text-center mb-3">Register</h1>
+      <div *ngFor="let error of errors">
+        <div *ngIf="error.msg != '' " class="alert alert-danger">
+          {{error.msg}}
+        </div>
+      </div>
       <form action="/home/register" method="POST" #usersform="ngForm" (ngSubmit)="onUserRegister(usersform.value)">
         <div class="form-group mb-3">
           <label for="name" class="mb-2 fs-4">First Name</label>
