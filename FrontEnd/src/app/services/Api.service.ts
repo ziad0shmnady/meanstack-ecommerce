@@ -24,7 +24,16 @@ export class ApitestService {
       }
     });
   }
-  getProductById(id: string): any {
-    return this.httpclient.get(`${environment.apiURL}/products/${id}`);
+  getProductById(id: string|null): any {
+    return new Promise<Product[]>((resolve, reject) => {
+      try {
+        this.httpclient.get(`${environment.apiURL}/product/${id}`)
+          .subscribe((response: any) => {
+            resolve(response.data);
+          });
+      } catch {
+        reject();
+      }
+    });
   }
 }
