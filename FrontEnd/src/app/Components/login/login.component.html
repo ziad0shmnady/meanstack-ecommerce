@@ -15,7 +15,6 @@
             placeholder="Enter Email"
             required="required"
           />
-          <span *ngIf="email.valid" style="color: red">Please enter a valid Email</span>
         </div>
         <div class="form-group password mb-3">
           <label for="password" class="mb-2 fs-4">Password</label>
@@ -30,7 +29,6 @@
             required="required"
           />
           <i class="fa-solid fa-eye" id="eye"></i>
-          <span *ngIf="password.valid" style="color: red">Please enter a valid Password</span>
         </div>
         <div class="loginbutton">
           <button type="submit" class="btn btn-dark btn-block">Login</button>
