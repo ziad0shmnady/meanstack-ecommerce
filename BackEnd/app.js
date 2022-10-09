@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 let bodyParser = require("body-parser");
 const { port, database } = require("./config/config");
 const productController = require("./controller/productController");
-
+const userController = require('./controller/userController')
 let app = express();
 
 // parse application/json
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false })); // so we can access the data c
 
 app.get("/product", productController.getAllProducts);
 app.get("/product/:id", productController.getProductById);
-
+app.post('/postregister', userController.postRegister)
 app.listen(port, () => {
   console.log(`conected with port ${port}`);
 });

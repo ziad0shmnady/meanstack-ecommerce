@@ -4,6 +4,7 @@ let User = require('../model/user')
 let bcrypt = require('bcryptjs')
 let passport = require('passport')
 let { ensureAuthenticated } = require('../config/auth')
+const { json } = require('body-parser')
 
 exports.getHome = (req, res) => {
   res.redirect("/home")
@@ -21,12 +22,13 @@ exports.postlogin = (req, res, next) => {
 exports.getRegister = (req, res) => {
   res.render("Register", { user: req.user, title: "Register" });
 }
+
 exports.postRegister = (req, res) => {
   let { firstname, lastname, email, password, password2 } = req.body;
   let errors = []
 
   //check that all fields are filled
-  if (!firstname || !lastname || !email || !password || !password2) {
+  if (!firstname || !lastname || !email || !password) {
     errors.push({ msg: "Please fill out all the fields" })
   }
 
@@ -42,22 +44,13 @@ exports.postRegister = (req, res) => {
 
   //check if their is any errors 
   if (errors.length > 0) {
-    res.render('register', { errors, firstname, lastname, email, password, password2, title: "Register" })
+    res.json({ errors })
   } else {
     User.findOne({ email: email })
       .then(user => {
         errors.push({ msg: "Email is already registered" })
         if (user) {
-          res.render('register', {
-            user: req.user,
-            errors,
-            firstname,
-            lastname,
-            email,
-            password,
-            password2,
-            title: "Register"
-          })
+          res.json({ errors })
         } else {
           // if user doesn't exist create new one
           let newUser = new User({ firstname, lastname, email, password })
@@ -70,8 +63,9 @@ exports.postRegister = (req, res) => {
               //SaveUser
               newUser.save()
                 .then(user => {
-                  req.flash('success_msg', 'You are now registered and can Login ')
-                  res.redirect('/home/login')
+                  // req.flash('success_msg', 'You are now registered and can Login ')
+                  // res.redirect('/home/login')
+                  res.json({ user })
                 })
                 .catch(err => console.log(err))
             })

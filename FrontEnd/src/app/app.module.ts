@@ -17,11 +17,10 @@ import { ViewAllProductsComponent } from './Components/view-all-products/view-al
 import { ProductsComponent } from './Components/main-page/products/products.component';
 import { ProductComponent } from './Components/main-page/product/product.component';
 import { ProductDeatilsComponent } from './Components/product-deatils/product-deatils.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
 import { CartLineComponent } from './Components/cart-line/cart-line.component';
 import { CartComponent } from './Components/cart/cart.component';
-
 
 @NgModule({
   declarations: [
@@ -50,7 +49,7 @@ import { CartComponent } from './Components/cart/cart.component';
     HttpClientModule,
     SwiperModule,
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
