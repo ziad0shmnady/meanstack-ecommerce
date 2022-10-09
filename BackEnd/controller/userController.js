@@ -13,11 +13,7 @@ exports.getLogin = (req, res) => {
   res.render("Login", { user: req.user, title: "Login" });
 }
 exports.postlogin = (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/home/login',
-    failureFlash: true
-  })(req, res, next)
+  passport.authenticate()(req, res, next)
 }
 exports.getRegister = (req, res) => {
   res.render("Register", { user: req.user, title: "Register" });

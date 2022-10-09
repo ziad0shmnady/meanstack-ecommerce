@@ -9,28 +9,32 @@ module.exports = function (passport) {
             User.findOne({ email: email })
                 .then(user => {
                     if (!user) {
-                        return done(null,false,{message:"This email is not registered"})
+                        req.flash('error_msg', "This email is not registered")
+
+                        // return done(null, false, { msg: "This email is not registered" })
                     }
                     //comparing password
-                    bcrypt.compare(password,user.password, (err,isMatch) => {
+                    bcrypt.compare(password, user.password, (err, isMatch) => {
                         if (err) throw err;
-                        
+
                         if (isMatch) {
-                            return done(null,user)
+                            return done(null, user)
                         } else {
-                            return done(null,false,{message:"Wrong Password"})
+
+                            console.log(errors.msg)
+                            return done(null, false, { msg: "Wrong Password" })
                         }
                     })
                 })
         })
     )
-            passport.serializeUser((user, done) => {
-                done(null,user.id)
-            });
+    passport.serializeUser((user, done) => {
+        done(null, user.id)
+    });
 
-            passport.deserializeUser((id, done) => {
-                User.findById(id, (err, user) => {
-                    done(err,user)
-                })
-            });
+    passport.deserializeUser((id, done) => {
+        User.findById(id, (err, user) => {
+            done(err, user)
+        })
+    });
 }
