@@ -1,0 +1,31 @@
+<div class="row pb-3">
+  <div class="col-lg-2 col-md-2 col-sm-6 pb-1" *ngFor="let product of products">
+    <div class="card product-item border-0" style="width: 14rem">
+      <img
+        [routerLink]="['/home/productDeatils', product._id]"
+        class="img-fluid w-75 productImg"
+        [src]="product.image_url"
+        [alt]="product.name"
+      />
+      <div class="card-body">
+        <div class="h6 productName text-decoration-none text-truncate text-primary" href="" [routerLink]="['/home/productDeatils', product._id]">{{
+          product.name
+        }}</div>
+        <h5>
+          {{
+            product.sizes[0].price * (1 - product.discount / 100)
+              | currency: "EGP"
+          }}
+        </h5>
+        <h6 class="text-muted ml-2">
+          <del>{{ product.sizes[0].price | currency: "EGP" }}</del>
+        </h6>
+        <div
+          class="mt-4 text-center text-light fs-5 fw-bold cursor-pointer m-auto addtocarttext add-to-cart rounded-pill px-3 py-2"  (click)="addToCart(product)"
+        >
+          <span>Add to Cart <i class="fa-solid fa-plus ms-2 fs-5"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
