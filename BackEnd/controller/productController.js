@@ -1,12 +1,9 @@
 let Product = require("../model/product");
 
 exports.getAllProducts = async (req, res) => {
-  let category = req.query.category;
-
   let products;
   try {
-    if (category) products = await Product.where({ category: category });
-    else products = await Product.find();
+    products = await Product.find();
   } catch (err) {
     console.log(err);
   }

@@ -8,17 +8,19 @@ import { Product } from '../interfaces/product';
 export class CartService {
   cartLines: Array<CartLine> = [];
   constructor() {
-    this.cartLines = JSON.parse(localStorage.getItem('cartLines') || '[]');
+    // localStorage.setItem('cartLines', JSON.stringify(this.cartLines));
   }
 
   getProducts(): Array<CartLine> {
+    this.cartLines = JSON.parse(localStorage.getItem('cartLines') || '[]');
     return this.cartLines;
   }
 
   getProductCount(): number {
-    let total = 0;
-    this.cartLines.forEach((item: any) => {
-      total += item.count;
+    let total = 0
+    const products = JSON.parse(localStorage.getItem("cartLines") || '{}')
+    products.forEach((item: any) => {
+      total += item.count
     });
     return total;
   }
@@ -55,7 +57,7 @@ export class CartService {
   getSubTotal() {
     return this.cartLines
       .map((l) => l.product.sizes[0].price * l.count)
-      .reduce((a, v) => (a += v), 0);
+      .reduce((a, v) => (a += v),0);
   }
 
   getShipping() {

@@ -1,6 +1,6 @@
 import { ApitestService } from '../../../services/Api.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Product, ProductCategory } from 'src/app/interfaces/product';
+import { Product } from 'src/app/interfaces/product';
 import { SwiperOptions } from 'swiper';
 
 @Component({
@@ -9,11 +9,12 @@ import { SwiperOptions } from 'swiper';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
+
   products: Array<Product> = [];
   @Input() title: string = 'Products';
-  @Input() category: ProductCategory = 'all';
+  @Input() category: string = '';
 
-  constructor(private apitest: ApitestService) {}
+  constructor(private apitest:ApitestService) {}
   config: SwiperOptions = {
     breakpoints: {
       499: {
@@ -29,12 +30,11 @@ export class ProductsComponent implements OnInit {
     },
   };
 
-  async ngOnInit() {
-    try {
-      this.products = await this.apitest.getProducts(this.category);
-    } catch (e) {
-      this.products = [];
-      console.error(e);
-    }
+  ngOnInit(): void {
+    this.apitest.getData().subscribe((response:any)=>{
+      this.products = response.data.filter(
+        (product: { category: string; }) => product.category === this.category
+      );
+    });
   }
 }
