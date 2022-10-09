@@ -11,10 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-deatils.component.css'],
 })
 export class ProductDeatilsComponent implements OnInit {
-  id: string = '';
   product: Product = {} as Product;
   count: number;
-
   @Input() index: number = -1;
   @Input() cartLine: CartLine = {} as CartLine;
 
@@ -27,15 +25,12 @@ export class ProductDeatilsComponent implements OnInit {
     this.count = 1;
   }
 
-  ngOnInit(): void {
-    const idFromQuery = this.route.snapshot.paramMap.get('id');
-    if (idFromQuery) {
-      this.id = idFromQuery;
-      this.apitest.getProductById(this.id).subscribe(
-        (response: any) => {
-          this.product = response.data;
-        }
-      );
+  async ngOnInit() {
+    try {
+      const idFromQuery = this.route.snapshot.paramMap.get('id');
+      this.product = await this.apitest.getProductById(idFromQuery)
+    } catch (e) {
+      console.error(e);
     }
   }
   
