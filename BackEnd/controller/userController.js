@@ -63,8 +63,6 @@ exports.postRegister = (req, res) => {
               //SaveUser
               newUser.save()
                 .then(user => {
-                  // req.flash('success_msg', 'You are now registered and can Login ')
-                  // res.redirect('/home/login')
                   res.json({ user })
                 })
                 .catch(err => console.log(err))
