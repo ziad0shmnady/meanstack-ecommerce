@@ -12,6 +12,7 @@
           class="custom-control-input"
           checked
           id="price-all"
+          (change)="changePrice($event, 0, 0)"
         />
         <label class="custom-control-label ms-2" for="price-all">All Price</label>
         <span class="badge border font-weight-normal ms-auto text-muted">1000</span>
@@ -23,6 +24,7 @@
           type="checkbox"
           class="custom-control-input"
           id="price-1"
+          (change)="changePrice($event, 0, 100)"
         />
         <label class="custom-control-label ms-2" for="price-1">$0 - $100</label>
         <span class="badge border font-weight-normal  ms-auto text-muted">150</span>
@@ -34,6 +36,7 @@
           type="checkbox"
           class="custom-control-input"
           id="price-2"
+          (change)="changePrice($event, 100, 200)"
         />
         <label class="custom-control-label ms-2" for="price-2">$100 - $200</label>
         <span class="badge border font-weight-normal  ms-auto text-muted">295</span>
@@ -45,6 +48,7 @@
           type="checkbox"
           class="custom-control-input"
           id="price-3"
+          (change)="changePrice($event, 200, 300)"
         />
         <label class="custom-control-label ms-2" for="price-3">$200 - $300</label>
         <span class="badge border font-weight-normal  ms-auto text-muted">246</span>
@@ -56,6 +60,7 @@
           type="checkbox"
           class="custom-control-input"
           id="price-4"
+          (change)="changePrice($event, 300, 400)"
         />
         <label class="custom-control-label ms-2" for="price-4">$300 - $400</label>
         <span class="badge border font-weight-normal  ms-auto text-muted">145</span>
@@ -67,6 +72,7 @@
           type="checkbox"
           class="custom-control-input"
           id="price-5"
+          (change)="changePrice($event, 400, 500)"
         />
         <label class="custom-control-label ms-2" for="price-5">$400 - $500</label>
         <span class="badge border font-weight-normal  ms-auto text-muted">168</span>

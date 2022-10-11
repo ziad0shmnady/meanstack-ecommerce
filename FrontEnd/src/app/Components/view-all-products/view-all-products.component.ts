@@ -1,4 +1,4 @@
-import { ApitestService } from './../../services/Api.service';
+import { ApitestService, PriceFilter } from './../../services/Api.service';
 import { Product, ProductCategory } from 'src/app/interfaces/product';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-all-products.component.css']
 })
 export class ViewAllProductsComponent implements OnInit {
+  priceList: Array<PriceFilter> = [{ minValue: 0, maxValue: 0 }];
   products: Array<Product> = [];
   constructor(private route: ActivatedRoute,private apitest: ApitestService) { }
 
@@ -19,7 +20,10 @@ export class ViewAllProductsComponent implements OnInit {
     } catch (e) {
       console.error(e);
     }
-   
+  }
+
+  changePrice(priceList: Array<PriceFilter>) {
+    this.priceList = priceList;
   }
 
 }

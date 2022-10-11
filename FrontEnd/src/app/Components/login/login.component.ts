@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
     email:'',
     password: ''
   }
+  message:string = ''
 
   constructor(private authService:AuthService) { }
 
@@ -19,10 +20,13 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.user.email,this.user.password).subscribe(data=>{
-      console.log(data)
+      window.location.href = "/home"
     },
     err =>{
-      console.log(err)
+      if(err.status === 401){
+        this.message = 'Invalid UserName Or Password'
+      }
+      console.log(err.status)
     })
   }
 

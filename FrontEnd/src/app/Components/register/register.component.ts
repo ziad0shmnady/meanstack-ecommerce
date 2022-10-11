@@ -18,6 +18,9 @@ export class RegisterComponent implements OnInit {
   onUserRegister(user: User) {
     this.httpclient.post(`${environment.apiURL}/postregister`, user).subscribe((response:any) => {
       this.errors = response["errors"]
+      if(this.errors === undefined){
+        window.location.href = '/home/login';
+      }
     });
   }
 }

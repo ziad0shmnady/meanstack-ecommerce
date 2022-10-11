@@ -2,17 +2,18 @@ let express = require("express");
 const mongoose = require("mongoose");
 let bodyParser = require("body-parser");
 const { port, database } = require("./config/config");
-let User = require('./model/user')
 const productController = require("./controller/productController");
 const userController = require('./controller/userController')
 const passport = require('passport')
-const localStrategy = require('passport-local').Strategy
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 let flash = require("connect-flash")
-const bcrypt = require('bcrypt')
+
 
 let app = express();
+
+//passport config
+require("./config/passport")(passport)
 
 // parse application/json
 app.use(bodyParser.json());
@@ -32,43 +33,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 //flash middleware
 app.use(flash())
-passport.use(new localStrategy({ usernameField: 'email' }, (email, password, done) => {
-  //match User
-  User.findOne({ email: email })
-    .then(user => {
-      if (!user) {
-        return done(null, false, { message: "This email is not registered" })
-      }
-      //comparing password
-      bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (err) throw err;
 
-        if (isMatch) {
-          return done(null, user)
-        } else {
-          return done(null, false, { message: "Wrong Password" })
-        }
-      })
-    })
-}))
-//serialize & deserialize
-passport.serializeUser((user, done) => {
-  done(null, user.id)
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  })
-});
 app.post('/login', passport.authenticate('local'), (req, res) => {
   if (req.isAuthenticated()) {
     res.json({ user: req.user })
   }
-  // res.send(req.isAuthenticated() ? req.user : '0')
-  // User.findOne({ email: email }).then((user) => {
-  //   res.json(user)
-  // }).catch((err) => console.log(err))
+
 })
 app.use((req, res, next) => {
   res.locals.error_msg = req.flash('error_msg')

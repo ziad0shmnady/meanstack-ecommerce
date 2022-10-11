@@ -2,6 +2,9 @@
   <div class="col-lg-5 col-md-6 m-auto">
     <div class="card card-body">
       <h1 class="text-center mb-3">Login</h1>
+      <div class="alert alert-danger" *ngIf="message != ''" role="alert">
+        {{message}}
+      </div>
       <form (ngSubmit)="login()">
         <div class="form-group mb-3">
           <label for="email" class="mb-2 fs-4">Email</label>
