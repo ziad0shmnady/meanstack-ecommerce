@@ -6,9 +6,7 @@ let passport = require('passport')
 let { ensureAuthenticated } = require('../config/auth')
 const { json } = require('body-parser')
 
-exports.getHome = (req, res) => {
-  res.redirect("/home")
-}
+
 exports.getLogin = (req, res) => {
   res.render("Login", { user: req.user, title: "Login" });
 }
@@ -68,22 +66,18 @@ exports.postRegister = (req, res) => {
       })
   }
 }
-exports.getProfile = (req, res) => {
-  res.render("Profile", { user: req.user, title: "Home" });
-}
-exports.deleteUser = (req, res) => {
-  let id = req.params.id;
-  User.findByIdAndDelete(id)
-    .then((result) => {
-      res.json({ redirect: '/home' })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
-exports.logoutUser = (req, res, next) => {
-  req.logout((err) => {
-    if (err) return next(err)
-    res.redirect('/home');
+
+exports.getUserById = async (req, res, next) => {
+  let user;
+  try {
+    user = await User.findOne({ _id: req.params.id });
+  } catch (err) {
+    console.log("error");
+  }
+  if (!user) {
+    return res.status(404).json({ message: "No user found" });
+  }
+  return res.status(201).json({
+    data: user,
   });
-}
+};
