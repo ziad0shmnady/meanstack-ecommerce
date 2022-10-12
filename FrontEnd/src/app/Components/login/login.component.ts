@@ -19,8 +19,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.authService.login(this.user.email,this.user.password).subscribe(data=>{
-      window.location.href = "/home"
+    this.authService.login(this.user.email,this.user.password).subscribe((data:any)=>{
+      let id = data['user']._id
+      localStorage.setItem('id',id);
+      window.location.href = `/home`
     },
     err =>{
       if(err.status === 401){
