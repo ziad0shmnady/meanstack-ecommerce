@@ -33,11 +33,25 @@
       <div class="check d-flex align-items-center">
         <!-- SignIn -->
         <div class="signin">
-          <div
+          <div *ngIf="user == undefined"
             routerLink="home/login"
             class="fw-bold text-white border-0 text-decoration-none btn"
             >Sign In<i class="fa-regular fa-user ms-2"></i
           ></div>
+          <div *ngIf="user != undefined" class="account dropdown">
+            <div  class="text-light text-center">Hello, {{user.firstname}}</div>
+            <div ngbDropdown class="dropdown">
+            <a ngbDropdownToggle class="fw-bold text-white border-0 text-decoration-none btn" type="button" id="dropdownMenuButton1" aria-expanded="false">
+              My Account<i class="fa-regular fa-user ms-2"></i>
+            </a>
+              <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a class="dropdown-item" href="/home/profile?">Profile</a>
+                  <a href="" class="dropdown-item" (click)="logOut()">Logout</a>
+                </li>
+              </ul>
+            </div>
+            </div>
         </div>
         <!-- Cart  -->
         <div class="cart fw-bold">
