@@ -57,7 +57,7 @@ app.use(express.urlencoded({ extended: false })); // so we can access the data c
 app.get("/product", productController.getAllProducts);
 app.get("/product/:id", productController.getProductById);
 app.post('/postregister', userController.postRegister)
-// app.post('/postlogin', userController.postlogin)
+app.get('/user/:id', userController.getUserById)
 
 app.listen(port, () => {
   console.log(`conected with port ${port}`);
