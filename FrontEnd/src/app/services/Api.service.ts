@@ -1,3 +1,4 @@
+import { User } from './../interfaces/user';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -37,55 +38,31 @@ export class ApitestService {
     });
   }
 
-  // getProductCountWithFilter(
-  //   priceList: Array<PriceFilter>,
-  //   colorList: Array<string>,
-  //   sizeList: Array<string>
-  // ): number {
-  //   return (
-  //     this.products.filter((p) => {
-  //       return (
-  //         this.isPriceInRange(p.price, priceList) &&
-  //         this.isColorInRange(p.color, colorList) &&
-  //         this.isSizeInRange(p.size, sizeList)
-  //       );
-  //     }).length / 6
-  //   );
-  // }
-
-  // getProductWithFilter(
-  //   priceList: Array<PriceFilter>,
-  //   colorList: Array<string>,
-  //   sizeList: Array<string>,
-  //   currentPage: number,
-  //   pageSize: number
-  // ): Array<Product> {
-  //   return this.products
-  //     .filter((p) => {
-  //       return (
-  //         this.isPriceInRange(p.price, priceList) &&
-  //         this.isColorInRange(p.color, colorList) &&
-  //         this.isSizeInRange(p.size, sizeList)
-  //       );
-  //     })
-  //     .slice(currentPage * pageSize, currentPage * pageSize + pageSize);
-  // }
-
-  isColorInRange(color: string, colorList: Array<string>) {
-    if (colorList.length == 0) return true;
-    return colorList.includes(color);
+  getUserById(id: string|null): any {
+    return new Promise<User>((resolve, reject) => {
+      try {
+        this.httpclient.get(`${environment.apiURL}/user/${id}`)
+          .subscribe((response: any) => {
+            resolve(response.data);
+          });
+      } catch {
+        reject();
+      }
+    });
   }
-  isSizeInRange(size: string, sizeList: Array<string>) {
-    if (sizeList.length == 0) return true;
-    return sizeList.includes(size);
-  }
-  isPriceInRange(price: number, priceList: Array<PriceFilter>): boolean {
-    for (let i = 0; i < priceList.length; i++) {
-      if (priceList[i].minValue <= price && priceList[i].maxValue >= price)
-        return true;
-      if (priceList[i].minValue == 0 && priceList[i].maxValue == 0) return true;
-    }
-    return false;
+
+  getUser() {
+    return new Promise<Product[]>((resolve, reject) => {
+      try {
+        this.httpclient
+          .get(environment.apiURL + "/home")
+          .subscribe((response: any) => {
+            resolve(response.data);
+          });
+      } catch {
+        reject();
+      }
+    });
   }
 
 }
