@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { ProductDeatilsComponent } from './Components/product-deatils/product-deatils.component';
 import { ViewAllProductsComponent } from './Components/view-all-products/view-all-products.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'home/products/:category',
     component: ViewAllProductsComponent,
   },
+  { path: 'home/profile', component: ProfileComponent },
 ];
 
 @NgModule({
